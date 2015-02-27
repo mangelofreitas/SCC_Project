@@ -5,6 +5,10 @@ public class Celula {
 	private int estadoCrescimento;
 	private ArrayList<Animal> animais;
 
+	public Celula(Coordenada coordenada, boolean relva){
+		this.coordenada = coordenada;
+		this.relva = relva;
+	}
 	public void regeneraRelva() {
 		throw new UnsupportedOperationException();
 		
