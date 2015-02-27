@@ -5,16 +5,16 @@ public class Celula {
 	private int estadoCrescimento;
 	private ArrayList<Animal> animais;
 
-	public Celula(Coordenada coordenada, boolean relva){
+	public Celula(Coordenada coordenada, int estadoCrescimento){
 		this.coordenada = coordenada;
-		this.relva = relva;
+                this.estadoCrescimento = estadoCrescimento;
+                this.animais = new ArrayList<Animal>();
 	}
-	public void regeneraRelva() {
-		throw new UnsupportedOperationException();
-		
+	public void regeneraRelva() {		
 		if(estadoCrescimento <= 30){
 			estadoCrescimento++;
 		}
+        }
 	
 	public void adicionaAnimal(Animal o){
 		animais.add(o);

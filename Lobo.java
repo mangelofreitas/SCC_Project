@@ -1,8 +1,8 @@
 public class Lobo extends Animal {
 
-	public Lobo(int tipo, double energia, Celula posicao) {
+	public Lobo(double energia, Celula posicao) {
             
-            super(tipo,energia,posicao);
+            super(0,energia,posicao);
 	}
 
 	public Animal geraAnimal() {

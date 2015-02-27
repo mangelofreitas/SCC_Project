@@ -5,7 +5,9 @@ public abstract class Animal {
     protected Celula posicao;
 
     public Animal(int tipo, double energia, Celula posicao) {
-        
+        this.tipo = tipo;
+        this.energia = energia;
+        this.posicao = posicao;
     }
 
     public void movimento() {

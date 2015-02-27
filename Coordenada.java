@@ -3,9 +3,17 @@ public class Coordenada {
 	private int x;
 	private int y;
 
-	public Coordenada() {
-		// TODO - implement Coordenada.Coordenada
-		throw new UnsupportedOperationException();
-	}
+        public Coordenada(int x,int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+    int getX() {
+        return x;
+    }
+
+    int getY() {
+        return y;
+    }
 
 }

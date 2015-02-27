@@ -1,7 +1,7 @@
 public class Ovelha extends Animal {
 
-	public Ovelha(int tipo, double energia, Celula posicao) {
-            super(tipo,energia,posicao);
+	public Ovelha(double energia, Celula posicao) {
+            super(1,energia,posicao);
 	}
 
 	public Animal geraAnimal() {
