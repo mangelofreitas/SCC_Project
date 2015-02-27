@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 public abstract class Animal {
 
     protected int tipo;
@@ -10,8 +13,48 @@ public abstract class Animal {
         this.posicao = posicao;
     }
 
-    public void movimento() {
-            
+    public boolean movimento(Celula posicoes[][]) {
+        Random random = new Random();
+        int xFut=0,yFut=0,x=posicao.getCoordenada().getX(),y=posicao.getCoordenada().getY();
+        energia--;
+        if(energia==0)
+        {
+            return false;
+        }
+        while(xFut==0 && yFut == 0)
+        {
+             xFut = random.nextInt(3)-1;
+             yFut = random.nextInt(3)-1;
+        }
+        posicoes[x][y].removeAnimal(this);
+        if(x+xFut<0)
+        {
+            posicao = posicoes[posicoes.length-1][y];
+            posicoes[posicoes.length-1][y].adicionaAnimal(this);
+            x=posicao.getCoordenada().getX();
+        }
+        else if(x+xFut>posicoes.length-1)
+        {
+            posicao = posicoes[0][y];
+            posicoes[0][y].adicionaAnimal(this);
+            x=posicao.getCoordenada().getX();
+        }
+        if(y+yFut<0)
+        {
+            posicao = posicoes[x][posicoes.length-1];
+            posicoes[x][posicoes[x].length-1].adicionaAnimal(this);
+        }
+        else if(y+yFut>posicoes[x].length-1)
+        {
+            posicao = posicoes[x][0];
+            posicoes[x][0].adicionaAnimal(this);
+        }
+        if(x+xFut>=0 && x+xFut<=posicoes.length-1 && y+yFut>=0 && y+yFut<=posicoes.length-1)
+        {
+            posicao = posicoes[x+xFut][y+yFut];
+            posicoes[x+xFut][y+yFut].adicionaAnimal(this);
+        }
+        return true;
     }
 
     public abstract Animal geraAnimal();
