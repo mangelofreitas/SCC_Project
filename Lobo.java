@@ -1,3 +1,7 @@
+
+import java.util.Random;
+
+
 public class Lobo extends Animal {
 
 	public Lobo(double energia, Celula posicao) {
@@ -6,8 +10,14 @@ public class Lobo extends Animal {
 	}
 
 	public Animal geraAnimal() {
-		// TODO - implement Lobo.geraAnimal
-		throw new UnsupportedOperationException();
+            double aux;
+            Random rd = new Random();
+            aux = rd.nextDouble();
+            if(aux <= 0.05){
+                Lobo filho = new Lobo(energia/2,posicao);
+                return filho;
+            }
+         return null;   
 	}
 
 	public boolean come() {
