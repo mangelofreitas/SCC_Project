@@ -1,8 +1,8 @@
-public class Lobo extends Animais {
+public class Lobo extends Animal {
 
-	public Lobo() {
-		// TODO - implement Lobo.Lobo
-		throw new UnsupportedOperationException();
+	public Lobo(int tipo, double energia, Celula posicao) {
+            
+            super(tipo,energia,posicao);
 	}
 
 	public Animal geraAnimal() {

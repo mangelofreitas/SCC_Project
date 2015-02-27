@@ -1,8 +1,11 @@
+
+import java.util.ArrayList;
+
 public class Campo {
 
 	private Coordenada dimensao;
 	private Celula[][] celulas;
-	private ArrayList<Animais> animais;
+	private ArrayList<Animal> animais;
 
 	public void geraAnimais() {
 		// TODO - implement Campo.geraAnimais

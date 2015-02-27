@@ -1,8 +1,7 @@
-public class Ovelha extends Animais {
+public class Ovelha extends Animal {
 
-	public Ovelha() {
-		// TODO - implement Ovelha.Ovelha
-		throw new UnsupportedOperationException();
+	public Ovelha(int tipo, double energia, Celula posicao) {
+            super(tipo,energia,posicao);
 	}
 
 	public Animal geraAnimal() {
