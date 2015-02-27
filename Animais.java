@@ -2,6 +2,7 @@ public abstract class Animais {
 
 	protected int tipo;
 	protected double energia;
+	protected Celula posicao;
 
 	public Animais() {
 		// TODO - implement Animais.Animais

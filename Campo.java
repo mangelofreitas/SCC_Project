@@ -1,7 +1,8 @@
 public class Campo {
 
 	private Coordenada dimensao;
-	private Celula[] celulas;
+	private Celula[][] celulas;
+	private ArrayList<Animais> animais;
 
 	public void geraAnimais() {
 		// TODO - implement Campo.geraAnimais
