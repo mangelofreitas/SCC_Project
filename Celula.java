@@ -1,11 +1,25 @@
+import java.util.ArrayList;
 public class Celula {
 
 	private Coordenada coordenada;
-	private boolean relva;
+	private int estadoCrescimento;
+	private ArrayList<Animal> animais;
 
 	public void regeneraRelva() {
-		// TODO - implement Celula.regeneraRelva
 		throw new UnsupportedOperationException();
+		
+		if(estadoCrescimento <= 30){
+			estadoCrescimento++;
+		}
+	
+	public void adicionaAnimal(Animal o){
+		animais.add(o);
 	}
-
+	
+	public void removeAnimal(Animal o){
+		animais.remove(o);
+	}
+	public void resetRelva(){
+		estadoCrescimento=0;
+	}
 }
