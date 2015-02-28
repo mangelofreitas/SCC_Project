@@ -25,25 +25,12 @@ public class Campo {
             celulas = new Celula[x][y];
             geraRelva();
             geraAnimais();
-            System.out.print("Período que terá a duração simulação :");
+            System.out.print("Período que terá a duração da simulação :");
             periodo = input.nextInt();
             for(int i=0;i<periodo;i++)
             {
-                for(int j=0;j<animais.size();j++)
-                {
-                    morto = animais.get(j).movimento(celulas);
-                    aux = animais.get(j).geraAnimal();
-                    if(aux!=null)
-                    {
-                        animais.add(aux);
-                        animais.get(j).posicao.getAnimais().add(aux);
-                        System.out.println("Foi gerado um novo animal: "+aux);
-                    }
-                    if(morto==true)
-                    {
-                        animais.remove(j);
-                    }
-                }
+                veAnimais();
+                
                 for(x=0;x<celulas.length;x++)
                 {
                     for(y=0;y<celulas[x].length;y++)
@@ -70,11 +57,11 @@ public class Campo {
                                 celulas[x][y].getAnimais().get(n).come(4/counterOvelhas);
                                 verificaRelva=true;
                             }
-                            else
+                            else if(counterLobos>0 && counterOvelhas>0)
                             {
                                 if(celulas[x][y].getAnimais().get(n).tipo==0 )
                                 {
-                                    celulas[x][y].getAnimais().get(n).come(20);
+                                    celulas[x][y].getAnimais().get(n).come(20*counterOvelhas/counterLobos);
                                 }
                                 else
                                 {
@@ -93,7 +80,21 @@ public class Campo {
                         }
                     }
                 }
-                System.out.println("Número de animais: "+animais.size());
+                for(int j=0;j<animais.size();j++)
+                {
+                    morto = animais.get(j).movimento(celulas);
+                    aux = animais.get(j).geraAnimal();
+                    if(aux!=null)
+                    {
+                        animais.add(aux);
+                        animais.get(j).posicao.getAnimais().add(aux);
+                    }
+                    if(morto==true)
+                    {
+                        animais.get(j).posicao.getAnimais().remove(animais.get(j));
+                        animais.remove(j);
+                    }
+                }
             }
         }
 
@@ -111,8 +112,8 @@ public class Campo {
                 int x = rd.nextInt(dimensao.getX());
                 int y = rd.nextInt(dimensao.getY());
                 aux = new Lobo(rd.nextInt(30)+1,celulas[x][y]);
-                animais.add(aux);
                 celulas[x][y].adicionaAnimal(aux);
+                animais.add(aux);
             }
         }
 
@@ -127,6 +128,23 @@ public class Campo {
                     }
                 }
             }
+        }
+        
+        public static void veAnimais()
+        {
+            int nOvelhas=0,nLobos=0;
+            for(int i=0;i<animais.size();i++)
+            {
+                if(animais.get(i).tipo==0)
+                {
+                    nLobos++;
+                }
+                else
+                {
+                    nOvelhas++;
+                }
+            }
+            System.out.println("Lobos: "+nLobos+" Ovelhas: "+nOvelhas);
         }
        
 

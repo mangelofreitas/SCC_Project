@@ -17,7 +17,7 @@ public abstract class Animal {
         Random random = new Random();
         int xFut=0,yFut=0,x=posicao.getCoordenada().getX(),y=posicao.getCoordenada().getY();
         energia--;
-        if(energia==0)
+        if(energia<=0.0)
         {
             return true;
         }
@@ -89,7 +89,7 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return "Animais{" + "tipo=" + tipo + ", energia=" + energia + ", posicao=" + posicao + '}';
+        return "Animais{" + "tipo=" + tipo + ", energia=" + energia + ", posicao=" + posicao.getCoordenada() + '}';
     }
         
         

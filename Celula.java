@@ -25,7 +25,7 @@ public class Celula {
 		animais.remove(o);
 	}
 	public void resetRelva(){
-		estadoCrescimento=0;
+		estadoCrescimento=1;
 	}
 
         public Coordenada getCoordenada() {

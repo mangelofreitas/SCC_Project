@@ -15,6 +15,12 @@ public class Coordenada {
         public int getY() {
             return y;
         }
+
+    @Override
+    public String toString() {
+        return "Coordenada{" + "x=" + x + ", y=" + y + '}';
+    }
+        
         
     
 }
