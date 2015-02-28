@@ -5,15 +5,16 @@ public class Celula {
 	private int estadoCrescimento;
 	private ArrayList<Animal> animais;
 
-	public Celula(Coordenada coordenada, int estadoCrescimento){
+	public Celula(Coordenada coordenada,int estadoCrescimento){
 		this.coordenada = coordenada;
-                this.estadoCrescimento = estadoCrescimento;
+		this.estadoCrescimento = estadoCrescimento;
                 this.animais = new ArrayList<Animal>();
 	}
-	public void regeneraRelva() {		
-		if(estadoCrescimento <= 30){
-			estadoCrescimento++;
-		}
+	public void regeneraRelva() 
+        {
+            if(estadoCrescimento < 30){
+                estadoCrescimento++;
+            }
         }
 	
 	public void adicionaAnimal(Animal o){
@@ -26,4 +27,18 @@ public class Celula {
 	public void resetRelva(){
 		estadoCrescimento=0;
 	}
+
+        public Coordenada getCoordenada() {
+            return coordenada;
+        }
+
+        public int getEstadoCrescimento() {
+            return estadoCrescimento;
+        }
+
+        public ArrayList<Animal> getAnimais() {
+            return animais;
+        }
+        
+        
 }

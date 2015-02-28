@@ -7,7 +7,6 @@ public class Ovelha extends Animal {
             super(1,energia,posicao);
 	}
 
-        @Override
         public Animal geraAnimal() {
             double aux;
             Random rd = new Random();
@@ -19,10 +18,9 @@ public class Ovelha extends Animal {
          return null;   
 	}
 
-    @Override
-    public boolean come() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        public void come(int num) {
+            energia+=num;
+        }
 }
 
 

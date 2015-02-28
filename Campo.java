@@ -1,22 +1,111 @@
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Campo {
 
-	private Coordenada dimensao;
-	private Celula[][] celulas;
-	private ArrayList<Animal> animais;
+	static private Coordenada dimensao;
+	static private Celula[][] celulas;
+	static private ArrayList<Animal> animais;
+        
+        public static void main(String args[])
+        {
+            int x, y, periodo,counterOvelhas,counterLobos;
+            boolean morto;
+            Animal aux;
+            Scanner input = new Scanner(System.in);
+            animais = new ArrayList<Animal>();
+            System.out.println("Dimensões do campo");
+            System.out.print("Dimensão do x: ");
+            x = input.nextInt();
+            System.out.print("Dimensão do y: ");
+            y = input.nextInt();
+            dimensao = new Coordenada(x,y);
+            celulas = new Celula[x][y];
+            geraRelva();
+            geraAnimais();
+            System.out.print("Período que terá a duração simulação :");
+            periodo = input.nextInt();
+            for(int i=0;i<periodo;i++)
+            {
+                for(int j=0;j<animais.size();j++)
+                {
+                    morto = animais.get(j).movimento(celulas);
+                    aux = animais.get(j).geraAnimal();
+                    if(aux!=null)
+                    {
+                        animais.add(aux);
+                        animais.get(j).posicao.getAnimais().add(aux);
+                        System.out.println("Foi gerado um novo animal: "+aux);
+                    }
+                    if(morto==true)
+                    {
+                        animais.remove(j);
+                    }
+                }
+                for(x=0;x<celulas.length;x++)
+                {
+                    for(y=0;y<celulas[x].length;y++)
+                    {
+                        counterOvelhas=0;
+                        counterLobos=0;
+                        for(int n=0;n<celulas[x][y].getAnimais().size();n++)
+                        {
+                            
+                            if(celulas[x][y].getAnimais().get(n).tipo==0)
+                            {
+                                counterLobos++;
+                            }
+                            else
+                            {
+                                counterOvelhas++;
+                            }
+                        }
+                        boolean verificaRelva=false;
+                        for(int n=0;n<celulas[x][y].getAnimais().size();n++)
+                        {
+                            if(counterLobos==0 && counterOvelhas>0 && celulas[x][y].getEstadoCrescimento()==30)
+                            {
+                                celulas[x][y].getAnimais().get(n).come(4/counterOvelhas);
+                                verificaRelva=true;
+                            }
+                            else
+                            {
+                                if(celulas[x][y].getAnimais().get(n).tipo==0 )
+                                {
+                                    celulas[x][y].getAnimais().get(n).come(20);
+                                }
+                                else
+                                {
+                                    animais.remove(celulas[x][y].getAnimais().get(n));
+                                    celulas[x][y].getAnimais().remove(n);
+                                }
+                            }
+                        }
+                        if(verificaRelva==true)
+                        {
+                            celulas[x][y].resetRelva();
+                        }
+                        else
+                        {
+                            celulas[x][y].regeneraRelva();
+                        }
+                    }
+                }
+                System.out.println("Número de animais: "+animais.size());
+            }
+        }
 
-	public void geraAnimais() {
+	public static void geraAnimais() {
             Animal aux;
             Random rd = new Random();
             for(int i=0;i<100;i++){
                 int x = rd.nextInt(dimensao.getX());
                 int y = rd.nextInt(dimensao.getY());
                 aux = new Ovelha(rd.nextInt(7)+1,celulas[x][y]);
-                animais.add(aux);
                 celulas[x][y].adicionaAnimal(aux);
+                animais.add(aux);
             }
             for(int i=0;i<30;i++){
                 int x = rd.nextInt(dimensao.getX());
@@ -27,7 +116,7 @@ public class Campo {
             }
         }
 
-	public void geraRelva() {
+	public static void geraRelva() {
             Random rd = new Random();
             for(int y = 0;y<dimensao.getY();y++){
                 for(int x = 0;x<dimensao.getX();x++){

@@ -7,7 +7,7 @@ public abstract class Animal {
     protected double energia;
     protected Celula posicao;
 
-    public Animal(int tipo, double energia, Celula posicao) {
+    Animal(int tipo, double energia, Celula posicao) {
         this.tipo = tipo;
         this.energia = energia;
         this.posicao = posicao;
@@ -19,7 +19,7 @@ public abstract class Animal {
         energia--;
         if(energia==0)
         {
-            return false;
+            return true;
         }
         while(xFut==0 && yFut == 0)
         {
@@ -54,12 +54,12 @@ public abstract class Animal {
             posicao = posicoes[x+xFut][y+yFut];
             posicoes[x+xFut][y+yFut].adicionaAnimal(this);
         }
-        return true;
+        return false;
     }
 
     public abstract Animal geraAnimal();
 
-    public abstract boolean come();
+    public abstract void come(int num);
 
     public int getTipo() {
         return tipo;

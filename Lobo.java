@@ -20,9 +20,10 @@ public class Lobo extends Animal {
          return null;   
 	}
 
-	public boolean come() {
-		// TODO - implement Lobo.come
-		throw new UnsupportedOperationException();
+	public void come(int num) {
+            energia+=num;
 	}
+        
+        
 
 }
