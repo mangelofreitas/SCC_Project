@@ -8,12 +8,18 @@ public class Campo {
 	static private Coordenada dimensao;
 	static private Celula[][] celulas;
 	static private ArrayList<Animal> animais;
+        static private ArrayList<Integer> valorOvelhas;
+        static private ArrayList<Integer> valorLobos;
+        static private ArrayList<Integer> valorRelva;
         
         public static void main(String args[])
         {
             int x, y, periodo,counterOvelhas,counterLobos;
             boolean morto;
             Animal aux;
+            valorOvelhas = new ArrayList<Integer>();
+            valorLobos = new ArrayList<Integer>();
+            valorRelva = new ArrayList<Integer>();
             ArrayList<Animal> crias = new ArrayList<Animal>();
             Scanner input = new Scanner(System.in);
             animais = new ArrayList<Animal>();
@@ -102,6 +108,7 @@ public class Campo {
                     celulas[crias.get(n).posicao.getCoordenada().getX()][crias.get(n).posicao.getCoordenada().getY()].adicionaAnimal(crias.get(n));
                 }
             }
+            //imprimeNumeros();
         }
 
 	public static void geraAnimais() {
@@ -138,7 +145,7 @@ public class Campo {
         
         public static void veAnimais()
         {
-            int nOvelhas=0,nLobos=0;
+            int nOvelhas=0,nLobos=0,nCelulas=0;
             for(int i=0;i<animais.size();i++)
             {
                 if(animais.get(i).tipo==0)
@@ -150,7 +157,40 @@ public class Campo {
                     nOvelhas++;
                 }
             }
-            System.out.println("Lobos: "+nLobos+" Ovelhas: "+nOvelhas);
+             for(int x=0;x<celulas.length;x++)
+            {
+                for(int y=0;y<celulas[x].length;y++)
+                {
+                    if(celulas[x][y].getEstadoCrescimento()==30)
+                    {
+                        nCelulas++;
+                    }
+                }
+                
+            }
+            valorOvelhas.add(nOvelhas);
+            valorLobos.add(nLobos);
+            valorRelva.add(nCelulas);
+            System.out.println("Lobos: "+nLobos+" Ovelhas: "+nOvelhas+" Relva: "+nCelulas);
+        }
+        
+        public static void imprimeNumeros()
+        {
+            System.out.println("Ovelhas");
+            for(int i=0;i<valorOvelhas.size();i++)
+            {
+                System.out.println(valorOvelhas.get(i));
+            }
+            System.out.println("\nLobos");
+            for(int i=0;i<valorLobos.size();i++)
+            {
+                System.out.println(valorLobos.get(i));
+            }
+            System.out.println("\nRelva");
+            for(int i=0;i<valorRelva.size();i++)
+            {
+                System.out.println(valorRelva.get(i));
+            }
         }
        
 
