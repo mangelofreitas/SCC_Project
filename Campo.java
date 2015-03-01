@@ -14,6 +14,7 @@ public class Campo {
             int x, y, periodo,counterOvelhas,counterLobos;
             boolean morto;
             Animal aux;
+            ArrayList<Animal> crias = new ArrayList<Animal>();
             Scanner input = new Scanner(System.in);
             animais = new ArrayList<Animal>();
             System.out.println("Dimensões do campo");
@@ -80,20 +81,25 @@ public class Campo {
                         }
                     }
                 }
+                crias.clear();
                 for(int j=0;j<animais.size();j++)
                 {
-                    morto = animais.get(j).movimento(celulas);
                     aux = animais.get(j).geraAnimal();
                     if(aux!=null)
                     {
-                        animais.add(aux);
-                        animais.get(j).posicao.getAnimais().add(aux);
+                        crias.add(aux);
                     }
+                    morto = animais.get(j).movimento(celulas);
                     if(morto==true)
                     {
-                        animais.get(j).posicao.getAnimais().remove(animais.get(j));
+                        animais.get(j).posicao.removeAnimal(animais.get(j));
                         animais.remove(j);
                     }
+                }
+                for(int n=0;n<crias.size();n++)
+                {
+                    animais.add(crias.get(n));
+                    celulas[crias.get(n).posicao.getCoordenada().getX()][crias.get(n).posicao.getCoordenada().getY()].adicionaAnimal(crias.get(n));
                 }
             }
         }
